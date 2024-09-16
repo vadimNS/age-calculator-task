@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css\styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    </style>
+    <title>Frontend Mentor | Age calculator app</title>
+  </head>
+  <body>
+    <main>
+      <div class="inputs">
+        <div class="input-dates">
+          <span class="input-nav">DAY</span
+          ><input
+            class="input-numbers"
+            type="number"
+            placeholder="DD"
+            min="1"
+            max="31"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+          />
+          <span class="error-message" id="error-message-day"></span>
+        </div>
+        <div class="input-dates">
+          <span class="input-nav">MONTH</span
+          ><input
+            class="input-numbers"
+            type="number"
+            placeholder="MM"
+            min="1"
+            max="12"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+          />
+          <span class="error-message" id="error-message-month"></span>
+        </div>
+        <div class="input-dates">
+          <span class="input-nav">YEAR</span
+          ><input
+            class="input-numbers"
+            type="number"
+            placeholder="YYYY"
+            min="1"
+            max="2024"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+          />
+          <span class="error-message" id="error-message-year"></span>
+        </div>
+      </div>
+      <div class="split">
+        <hr />
+
+        <button type="button" class="images-button" onclick="Transfer()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="46"
+            height="44"
+            viewBox="0 0 46 44"
+          >
+            <g fill="none" stroke="#FFF" stroke-width="2">
+              <path
+                d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"
+              />
+            </g>
+          </svg>
+        </button>
+      </div>
+      <div class="outputs">
+        <div class="outputs-section">
+          <div class="output-numbers" id="output-years">- -</div>
+          <span class="output-words">years</span>
+        </div>
+
+        <div class="outputs-section">
+          <div class="output-numbers" id="output-months">- -</div>
+          <span class="output-words">months</span>
+        </div>
+        <div class="outputs-section">
+          <div class="output-numbers" id="output-days">- -</div>
+          <span class="output-words">days</span>
+        </div>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
