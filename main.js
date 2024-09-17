@@ -2,37 +2,78 @@ function Transfer() {
   const day = document.querySelector('input[placeholder = "DD"]').value;
   const month = document.querySelector('input[placeholder = "MM"]').value;
   const year = document.querySelector('input[placeholder = "YYYY"]').value;
-  if (day && month && year) {
-    const dayValue = parseInt(day, 10);
-    const monthValue = parseInt(month, 10);
-    const yearValue = parseInt(year, 10);
 
-    const data = new Date();
-    const currentYear = data.getFullYear();
-    const currentMonth = data.getMonth() + 1;
-    const currentDay = data.getDate();
+  ClearErrorText();
 
-    let dayResult = currentDay - dayValue;
-    let monthResult = currentMonth - monthValue;
-    let yearResult = currentYear - yearValue;
+  let hasError = false;
 
-    if (dayResult < 0) {
-      dayResult *= -1;
-      monthResult -= 1;
-    }
-    if (monthResult < 0) {
-      monthResult *= -1;
-      yearResult -= 1;
-    }
-    document.querySelector("#output-years").innerText = yearResult;
-    document.querySelector("#output-months").innerText = monthResult;
-    document.querySelector("#output-days").innerText = dayResult;
-  } else {
-    document.querySelector("#error-message-year").textContent =
-      "This field required";
-    document.querySelector("#error-message-month").textContent =
-      "This field required";
+  if (!day) {
     document.querySelector("#error-message-day").textContent =
       "This field required";
+    hasError = true;
   }
+  if (!month) {
+    document.querySelector("#error-message-month").textContent =
+      "This field required";
+    hasError = true;
+  }
+  if (!year) {
+    document.querySelector("#error-message-year").textContent =
+      "This field required";
+    hasError = true;
+  }
+
+  if (hasError) {
+    return;
+  }
+
+  const dayValue = parseInt(day, 10);
+  const monthValue = parseInt(month, 10);
+  const yearValue = parseInt(year, 10);
+
+  const data = new Date();
+  const currentYear = data.getFullYear();
+  const currentMonth = data.getMonth() + 1;
+  const currentDay = data.getDate();
+
+  if (dayValue < 1 || dayValue > 31) {
+    document.querySelector("#error-message-day").textContent =
+      "Must be a valid day";
+    hasError = true;
+  }
+  if (monthValue < 1 || monthValue > 12) {
+    document.querySelector("#error-message-month").textContent =
+      "Must be a valid month";
+    hasError = true;
+  }
+  if (yearValue < 1 || yearValue > currentYear) {
+    document.querySelector("#error-message-year").textContent =
+      "Must be a valid year";
+    hasError = true;
+  }
+  if (hasError) {
+    return;
+  }
+
+  let dayResult = currentDay - dayValue;
+  let monthResult = currentMonth - monthValue;
+  let yearResult = currentYear - yearValue;
+
+  if (dayResult < 0) {
+    dayResult *= -1;
+    monthResult -= 1;
+  }
+  if (monthResult < 0) {
+    monthResult *= -1;
+    yearResult -= 1;
+  }
+  document.querySelector("#output-years").innerText = yearResult;
+  document.querySelector("#output-months").innerText = monthResult;
+  document.querySelector("#output-days").innerText = dayResult;
+  ClearErrorText();
+}
+function ClearErrorText() {
+  document.querySelector("#error-message-year").textContent = "";
+  document.querySelector("#error-message-month").textContent = "";
+  document.querySelector("#error-message-day").textContent = "";
 }
