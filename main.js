@@ -59,17 +59,18 @@ function Transfer() {
   let monthResult = currentMonth - monthValue;
   let yearResult = currentYear - yearValue;
 
-  if (dayResult < 0) {
-    const prevMonth = currentMonth === 1 ? 12 : currentMonth - 1;
-    const prevMonthYear = currentMonth === 1 ? currentYear - 1 : currentYear;
-    const daysInPrevMonth = new Date(prevMonthYear, prevMonth, 0).getDate();
-    dayResult += daysInPrevMonth;
-    monthResult -= 1;
-  }
   if (monthResult < 0) {
     monthResult += 12;
     yearResult -= 1;
   }
+
+  if (dayResult < 0) {
+    const prevMonth = currentMonth === 1 ? 12 : month;
+    const daysInPrevMonth = new Date(yearResult, prevMonth, 0).getDate();
+    dayResult += daysInPrevMonth;
+    monthResult -= 1;
+  }
+
   document.querySelector("#output-years").innerText = yearResult;
   document.querySelector("#output-months").innerText = monthResult;
   document.querySelector("#output-days").innerText = dayResult;
